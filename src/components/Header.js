@@ -7,8 +7,7 @@ import { NavDropdown } from "react-bootstrap";
 import { Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { mainPages } from "../data";
-import { HiOutlineLogin } from "react-icons/hi";
-import { FaSignOutAlt } from "react-icons/fa";
+import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
@@ -83,13 +82,13 @@ function Header() {
           </Navbar.Brand>
           {/* login icon */}
           {user ? (
-            <FaSignOutAlt
+            <HiOutlineLogout
               onClick={onLogout}
-              style={{ fontSize: "xxx-large", cursor: "pointer" }}
+              style={{ fontSize: "xx-large", cursor: "pointer" }}
             />
           ) : (
             <HiOutlineLogin
-              style={{ fontSize: "xxx-large", cursor: "pointer" }}
+              style={{ fontSize: "xx-large", cursor: "pointer" }}
               onClick={() => navigate("/dashboard")}
             />
           )}

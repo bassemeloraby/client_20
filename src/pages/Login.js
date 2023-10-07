@@ -102,7 +102,7 @@ const Login = () => {
           </div>
         </form>
       </section>
-      {wrongMessage && <div>wrong email or password </div>}
+      {wrongMessage && <h3 className="text-danger">wrong email or password ... try again </h3>}
     </Fragment>
   );
 };
