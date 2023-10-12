@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import AllDrugs from "./pages/medicine/AllDrugs";
 import Cosmotics from "./pages/cosmotic/Cosmotics";
 import Indication from "./pages/medicine/Indication";
+// import CosmoticUpdate from "./components/cosmotic/CosmoticUpdate";
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/allD" element={<AllDrugs />} />
           <Route path="/indication/:ScientificName" element={<Indication />} />
-          <Route path="/cosmotics" element={<Cosmotics />} />
+          <Route path="/cosmotics/*" element={<Cosmotics />}/>
+          
+
           <Route path="/insurance" element={<Insurance />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
