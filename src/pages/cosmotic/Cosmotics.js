@@ -1,11 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../../components/Spinner";
-// import { Outlet } from 'react-router-dom';
-// import { mainUrl } from "../../data";
 import CosmoticList from "../../components/cosmotic/CosmoticList";
 import CosmoticSearch from "../../components/cosmotic/CosmoticSearch";
-import { Route, Routes } from "react-router-dom";
 import CosmoticUpdate from "../../components/cosmotic/CosmoticUpdate";
 
 const url = "/api/cosmotics";
@@ -15,10 +13,6 @@ const Cosmotics = () => {
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [query, setQuery] = useState();
-  // const [low, setLow] = useState();
-  // const [idlow, setIdlow] = useState();
-  // const [description, setDescription] = useState();
-  // const [company, setCompany] = useState();
   const [cos, setCos] = useState([]);
   useEffect(() => {
     const fetchCosmotics = async () => {
@@ -64,13 +58,7 @@ const Cosmotics = () => {
         <Fragment>
           {" "}
           <CosmoticSearch setQuery={setQuery} />
-          <CosmoticList
-            items={items}
-            setCos={setCos}
-            // setIdlow={setIdlow}
-            // setDescription={setDescription}
-            // setCompany={setCompany}
-          />
+          <CosmoticList items={items} setCos={setCos} />
         </Fragment>
       )}
 

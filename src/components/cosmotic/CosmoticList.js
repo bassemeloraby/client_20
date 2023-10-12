@@ -1,19 +1,13 @@
-// import React, { useState } from "react";
 import { Virtuoso } from "react-virtuoso";
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-const CosmoticList = ({ items, setCos}) => {
+import Button from "react-bootstrap/Button";
+const CosmoticList = ({ items, setCos }) => {
   const navigate = useNavigate();
 
   const editHandler = (cos) => {
-    // setIdlow(cos._id);
-    // setDescription(cos._description);
-    // setCompany(cos._company);
     setCos(cos);
     navigate(`/cosmotics/cosmoticUpdate`);
     console.log(cos);
-
-    // setLow(cos._id, cos.description, cos.company);
   };
 
   return (
