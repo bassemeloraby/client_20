@@ -5,8 +5,9 @@ import Spinner from "../../components/Spinner";
 import CosmoticList from "../../components/cosmotic/CosmoticList";
 import CosmoticSearch from "../../components/cosmotic/CosmoticSearch";
 import CosmoticUpdate from "../../components/cosmotic/CosmoticUpdate";
+import CosmoticCard from "../../components/cosmotic/CosmoticCard";
 
-const url = "/api/cosmotics";
+const url = "/api/products";
 
 const Cosmotics = () => {
   const [cosmotics, setCosmotics] = useState([]);
@@ -14,6 +15,7 @@ const Cosmotics = () => {
   const [items, setItems] = useState([]);
   const [query, setQuery] = useState();
   const [cos, setCos] = useState([]);
+  const [afterUpdate, setAfterUpdate] = useState("");
   useEffect(() => {
     const fetchCosmotics = async () => {
       setLoading(true);
@@ -35,8 +37,8 @@ const Cosmotics = () => {
     setItems((_) =>
       cosmotics.filter(
         (x) =>
-          x.cosCompany.toLowerCase().includes(query?.toLowerCase()) ||
-          x.Description.toLowerCase().includes(query?.toLowerCase())
+          x.Description.toLowerCase().includes(query?.toLowerCase()) ||
+          x.Company.toLowerCase().includes(query?.toLowerCase())
       )
     );
   }, [query, cosmotics]);
@@ -55,25 +57,27 @@ const Cosmotics = () => {
         <h2>Cosmotics</h2>
       </div>
       <Routes>
-      <Route
-        path="cosmoticUpdate"
-        element={
-          <CosmoticUpdate
-            cos={cos}
-            setCos={setCos}
-          />
-        }
-      />
-    </Routes>
-      {!cos && (
-        <Fragment>
-          {" "}
-          <CosmoticSearch setQuery={setQuery} />
-          <CosmoticList items={items} setCos={setCos} />
-        </Fragment>
-      )}
+        <Route
+          path="cosmoticUpdate"
+          element={
+            <CosmoticUpdate
+              cos={cos}
+              setCos={setCos}
+              setAfterUpdate={setAfterUpdate}
+            />
+          }
+        />
+        <Route
+          path="cosmoticCard"
+          element={<CosmoticCard afterUpdate={afterUpdate} />}
+        />
+      </Routes>
 
-     
+      <Fragment>
+        {" "}
+        <CosmoticSearch setQuery={setQuery} />
+        <CosmoticList items={items} setCos={setCos} />
+      </Fragment>
     </div>
   );
 };

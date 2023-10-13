@@ -33,7 +33,7 @@ const CosmoticList = ({ items, setCos }) => {
             <div>
               {" "}
               <h3>{cos.Description}</h3>
-              <h6>{cos.cosCompany} </h6>
+              <h6>{cos.Company} </h6>
             </div>
             <div>
               <Button variant="success" onClick={() => editHandler(cos)}>
