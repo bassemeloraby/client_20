@@ -54,6 +54,17 @@ const Cosmotics = () => {
       <div className="d-flex mb-2">
         <h2>Cosmotics</h2>
       </div>
+      <Routes>
+      <Route
+        path="cosmoticUpdate"
+        element={
+          <CosmoticUpdate
+            cos={cos}
+            setCos={setCos}
+          />
+        }
+      />
+    </Routes>
       {!cos && (
         <Fragment>
           {" "}
@@ -62,20 +73,7 @@ const Cosmotics = () => {
         </Fragment>
       )}
 
-      <Routes>
-        <Route
-          path="cosmoticUpdate"
-          element={
-            <CosmoticUpdate
-              // idlow={idlow}
-              // description={description}
-              // company={company}
-              cos={cos}
-              setCos={setCos}
-            />
-          }
-        />
-      </Routes>
+     
     </div>
   );
 };
