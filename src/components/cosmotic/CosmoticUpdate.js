@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -7,7 +7,9 @@ import Form from "react-bootstrap/Form";
 import Spinner from "../Spinner";
 import { CategoryDb, CompanyDb } from "../../data/CosmoticData";
 const url = "/api/products";
-
+const l1 = "https://www.google.com/search?q=";
+const l2 =
+  "&sca_esv=571711580&rlz=1C1VDKB_enSA1075SA1075&tbm=isch&sxsrf=AM9HkKkhm2K1JYgiDZSvrn-lnYR52Xi5vA:1696763801819&source=lnms&sa=X&ved=2ahUKEwj18LLdqeaBAxXD2wIHHfNMAzMQ_AUoAXoECAQQAw&biw=1366&bih=641&dpr=1";
 const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
   const navigate = useNavigate();
   // const [updateCompany, setUpdateCompany] = useState();
@@ -67,6 +69,14 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
             <Form.Label>Description</Form.Label>
             <Form.Control placeholder={updateProduct.Description} disabled />
           </Form.Group>
+          <Link
+            to={l1 + updateProduct.Description + l2}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "red" }}
+          >
+            Google Pic
+          </Link>
           {/*---------updateProduct Company---------*/}{" "}
           <Form.Group className="mb-3">
             <Form.Label>Company</Form.Label>
@@ -112,6 +122,7 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
           </Button>
         </form>
       </div>
+
       <div>
         <Button variant="success" onClick={() => cancelHandler()}>
           Cancel

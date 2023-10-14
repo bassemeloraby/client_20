@@ -7,7 +7,7 @@ export const mainPages = [
   {
     id: 2,
     text: "cosmotics",
-    ping: [{ name: "search", link: "/cosmotics/cosmoticSearch" }],
+    ping: [{ name: "search", link: "/cosmotics/cosmoticSearch" },{ name: "filter", link: "/cosmotics/cosmoticFilter" }],
   },
   {
     id: 3,

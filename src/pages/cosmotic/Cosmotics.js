@@ -6,6 +6,7 @@ import CosmoticList from "../../components/cosmotic/CosmoticList";
 import CosmoticSearch from "../../components/cosmotic/CosmoticSearch";
 import CosmoticUpdate from "../../components/cosmotic/CosmoticUpdate";
 import CosmoticCard from "../../components/cosmotic/CosmoticCard";
+import CosmoticFilter from "../../components/cosmotic/CosmoticFilter";
 
 const url = "/api/products";
 
@@ -16,6 +17,7 @@ const Cosmotics = () => {
   const [query, setQuery] = useState();
   const [updateProduct, setUpdateProduct] = useState();
   const [updatedPoduct, setUpdatedPoduct] = useState();
+  const [filter, setFilter] = useState();
 
   useEffect(() => {
     const fetchCosmotics = async () => {
@@ -71,12 +73,27 @@ const Cosmotics = () => {
           element={<CosmoticCard updatedPoduct={updatedPoduct} />}
         />
         <Route
+          path="cosmoticFilter"
+          element={
+            <CosmoticFilter
+              cosmotics={cosmotics}
+              filter={filter}
+              setFilter={setFilter}
+            />
+          }
+        />
+        <Route
           path="cosmoticSearch"
           element={
             <Fragment>
               {" "}
               <CosmoticSearch setQuery={setQuery} />
-              <CosmoticList items={items} setUpdateProduct={setUpdateProduct} />
+              <CosmoticList
+                items={items}
+                setUpdateProduct={setUpdateProduct}
+                filter={filter}
+                setFilter={setFilter}
+              />
             </Fragment>
           }
         />

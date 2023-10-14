@@ -15,8 +15,8 @@ import Indication from "./pages/medicine/Indication";
 function App() {
   return (
     <Fragment>
+    <Header />
       <div className="container">
-        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/allD" element={<AllDrugs />} />
