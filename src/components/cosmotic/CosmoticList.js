@@ -1,13 +1,13 @@
 import { Virtuoso } from "react-virtuoso";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-const CosmoticList = ({ items, setCos }) => {
+const CosmoticList = ({ items,setUpdateProduct }) => {
   const navigate = useNavigate();
 
-  const editHandler = (cos) => {
-    setCos(cos);
+  const editHandler = (prod) => {
+    setUpdateProduct(prod)
     navigate(`/cosmotics/cosmoticUpdate`);
-    console.log(cos);
+    console.log(prod);
   };
 
   return (
@@ -16,7 +16,7 @@ const CosmoticList = ({ items, setCos }) => {
         style={{ height: "600px", background: "#f8f8f8" }}
         data={items}
         totalCount={10500}
-        itemContent={(index, cos) => (
+        itemContent={(index, prod) => (
           <div
             className="d-flex justify-content-between"
             style={{
@@ -32,11 +32,12 @@ const CosmoticList = ({ items, setCos }) => {
           >
             <div>
               {" "}
-              <h3>{cos.Description}</h3>
-              <h6>{cos.Company} </h6>
+              <h3>{prod.Description}</h3>
+              <h6>{prod.Company} </h6>
+              <h6>{prod.Category} </h6>
             </div>
             <div>
-              <Button variant="success" onClick={() => editHandler(cos)}>
+              <Button variant="success" onClick={() => editHandler(prod)}>
                 Edit
               </Button>{" "}
             </div>

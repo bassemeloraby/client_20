@@ -7,7 +7,7 @@ export const mainPages = [
   {
     id: 2,
     text: "cosmotics",
-    ping: [{ name: "search", link: "/cosmotics" }],
+    ping: [{ name: "search", link: "/cosmotics/cosmoticSearch" }],
   },
   {
     id: 3,

@@ -5,41 +5,48 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Spinner from "../Spinner";
+import { CategoryDb, CompanyDb } from "../../data/CosmoticData";
 const url = "/api/products";
 
-const CosmoticUpdate = ({ cos, setCos,setAfterUpdate }) => {
+const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
   const navigate = useNavigate();
-  const [updateCompany, setUpdateCompany] = useState(cos.Company);
+  // const [updateCompany, setUpdateCompany] = useState();
   const [loading, setLoading] = useState(false);
-
+  const [formData, setFormData] = useState({
+    Company: updateProduct.Company,
+    Category: updateProduct.Category,
+  });
+  const { Company, Category } = formData;
   const cancelHandler = (cos) => {
-    setCos("");
-    navigate(`/cosmotics`);
+    navigate(`/cosmotics/cosmoticSearch`);
     console.log(cos);
   };
 
+  // const onChange = (e) => {
+  //   console.log(e.target.value);
+  //   setUpdateCompany(e.target.value);
+  // };
+
   const onChange = (e) => {
-    console.log(e.target.value);
-    setUpdateCompany(e.target.value);
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.patch(`${url}/${cos._id}`, {
-        Company: updateCompany,
+      const res = await axios.patch(`${url}/${updateProduct._id}`, {
+        Company: Company,
+        Category: Category,
       });
 
       setLoading(false);
-      setAfterUpdate(res.data)
+      setUpdatedPoduct(res.data);
       console.log(res.data);
       navigate(`/cosmotics/cosmoticCard`);
-      // window.location.reload();
-      // // setTimeout(() => {
-      // //   navigate(`/cosmotics/cosmoticCard/${cos._id}`);
-      // // }, 3000);
-      // // window.location.reload();
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -53,36 +60,60 @@ const CosmoticUpdate = ({ cos, setCos,setAfterUpdate }) => {
   return (
     <div>
       <h2>CosmoticUpdate</h2>
-      {cos.Description}
-      <div className="col-6">
+
+      <div className="col-8">
         <form onSubmit={onSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Description</Form.Label>
-            <Form.Control placeholder={cos.Description} disabled />
+            <Form.Control placeholder={updateProduct.Description} disabled />
           </Form.Group>
-          <div className="d-flex justify-content-between">
-            {" "}
-            <Form.Group className="mb-3">
-              <Form.Label>Company</Form.Label>
-              <Form.Control placeholder={cos.Company} disabled />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Disabled select menu</Form.Label>
-              <Form.Select onChange={onChange}>
-                <option>no</option>
-                <option>avine</option>
-                <option>lakalut</option>
-                <option>montana</option>
-              </Form.Select>
-            </Form.Group>{" "}
-          </div>
+          {/*---------updateProduct Company---------*/}{" "}
+          <Form.Group className="mb-3">
+            <Form.Label>Company</Form.Label>
+            <Form.Control
+              type="text"
+              id="Company"
+              name="Company"
+              defaultValue={Company}
+              placeholder="Enter Company"
+              onChange={onChange}
+              list="Company1"
+            />
+            <datalist id="Company1">
+              {CompanyDb.map((c) => (
+                <option key={c._id} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
+            </datalist>
+          </Form.Group>{" "}
+          {/*-------------updateProduct Category-----------------*/}{" "}
+          <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+            <Form.Control
+              type="text"
+              id="Category"
+              name="Category"
+              defaultValue={Category}
+              placeholder="Enter Category"
+              onChange={onChange}
+              list="Category1"
+            />
+            <datalist id="Category1">
+              {CategoryDb.map((c) => (
+                <option key={c._id} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
+            </datalist>
+          </Form.Group>{" "}
           <Button variant="primary" type="submit">
             Submit
           </Button>
         </form>
       </div>
       <div>
-        <Button variant="success" onClick={() => cancelHandler(cos)}>
+        <Button variant="success" onClick={() => cancelHandler()}>
           Cancel
         </Button>{" "}
       </div>

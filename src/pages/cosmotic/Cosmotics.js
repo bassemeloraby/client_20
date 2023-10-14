@@ -14,8 +14,9 @@ const Cosmotics = () => {
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [query, setQuery] = useState();
-  const [cos, setCos] = useState([]);
-  const [afterUpdate, setAfterUpdate] = useState("");
+  const [updateProduct, setUpdateProduct] = useState();
+  const [updatedPoduct, setUpdatedPoduct] = useState();
+
   useEffect(() => {
     const fetchCosmotics = async () => {
       setLoading(true);
@@ -50,10 +51,9 @@ const Cosmotics = () => {
   if (loading) {
     return <Spinner />;
   }
-  console.log(cos);
   return (
     <div>
-      <div className="d-flex mb-2">
+      <div className="d-flex mb-2 justify-content-center">
         <h2>Cosmotics</h2>
       </div>
       <Routes>
@@ -61,23 +61,26 @@ const Cosmotics = () => {
           path="cosmoticUpdate"
           element={
             <CosmoticUpdate
-              cos={cos}
-              setCos={setCos}
-              setAfterUpdate={setAfterUpdate}
+              updateProduct={updateProduct}
+              setUpdatedPoduct={setUpdatedPoduct}
             />
           }
         />
         <Route
           path="cosmoticCard"
-          element={<CosmoticCard afterUpdate={afterUpdate} />}
+          element={<CosmoticCard updatedPoduct={updatedPoduct} />}
+        />
+        <Route
+          path="cosmoticSearch"
+          element={
+            <Fragment>
+              {" "}
+              <CosmoticSearch setQuery={setQuery} />
+              <CosmoticList items={items} setUpdateProduct={setUpdateProduct} />
+            </Fragment>
+          }
         />
       </Routes>
-
-      <Fragment>
-        {" "}
-        <CosmoticSearch setQuery={setQuery} />
-        <CosmoticList items={items} setCos={setCos} />
-      </Fragment>
     </div>
   );
 };
