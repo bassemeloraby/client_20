@@ -51,3 +51,21 @@ export const CompanyDb = [
     name: "EUCERIN",
   },
 ];
+export const usedAreaDb = [
+  {
+    id: 1,
+    name: "Hand",
+  },
+  {
+    id: 2,
+    name: "Face",
+  },
+  {
+    id: 3,
+    name: "Foot",
+  },
+  {
+    id: 3,
+    name: "Eye",
+  },
+];

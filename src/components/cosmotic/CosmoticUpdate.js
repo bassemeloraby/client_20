@@ -5,7 +5,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Spinner from "../Spinner";
-import { CategoryDb, CompanyDb } from "../../data/CosmoticData";
+import { CategoryDb, CompanyDb, usedAreaDb } from "../../data/CosmoticData";
 const url = "/api/products";
 const l1 = "https://www.google.com/search?q=";
 const l2 =
@@ -17,8 +17,9 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
   const [formData, setFormData] = useState({
     Company: updateProduct.Company,
     Category: updateProduct.Category,
+    usedArea: updateProduct.usedArea,
   });
-  const { Company, Category } = formData;
+  const { Company, Category, usedArea } = formData;
   const cancelHandler = (cos) => {
     navigate(`/cosmotics/cosmoticSearch`);
     console.log(cos);
@@ -117,6 +118,28 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
                   </option>
                 )
               )}
+            </datalist>
+          </Form.Group>{" "}
+          {/*-------------updateProduct usedArea-----------------*/}{" "}
+          <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+            <Form.Control
+              type="text"
+              id="usedArea"
+              name="usedArea"
+              defaultValue={usedArea}
+              placeholder="Enter usedArea"
+              onChange={onChange}
+              list="usedArea1"
+            />
+            <datalist id="usedArea1">
+              {usedAreaDb
+                .sort((a, b) => (a.name < b.name ? -1 : 1))
+                .map((c) => (
+                  <option key={c._id} value={c.name}>
+                    {c.name}
+                  </option>
+                ))}
             </datalist>
           </Form.Group>{" "}
           <Button variant="primary" type="submit">
