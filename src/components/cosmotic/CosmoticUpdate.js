@@ -110,11 +110,13 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
               list="Category1"
             />
             <datalist id="Category1">
-              {CategoryDb.map((c) => (
-                <option key={c._id} value={c.name}>
-                  {c.name}
-                </option>
-              ))}
+              {CategoryDb.sort((a, b) => (a.name < b.name ? -1 : 1)).map(
+                (c) => (
+                  <option key={c._id} value={c.name}>
+                    {c.name}
+                  </option>
+                )
+              )}
             </datalist>
           </Form.Group>{" "}
           <Button variant="primary" type="submit">
@@ -123,7 +125,7 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
         </form>
       </div>
 
-      <div>
+      <div className="mt-2">
         <Button variant="success" onClick={() => cancelHandler()}>
           Cancel
         </Button>{" "}

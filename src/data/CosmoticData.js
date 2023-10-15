@@ -27,6 +27,18 @@ export const CategoryDb = [
     id: 7,
     name: "Cleanser",
   },
+  {
+    id: 8,
+    name: "Scrubs",
+  },
+  {
+    id: 9,
+    name: "Acne",
+  },
+  {
+    id: 10,
+    name: "Pores",
+  },
 ];
 
 export const CompanyDb = [

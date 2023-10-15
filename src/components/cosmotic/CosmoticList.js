@@ -29,7 +29,7 @@ const CosmoticList = ({ items, setUpdateProduct, filter, setFilter }) => {
         totalCount={10500}
         itemContent={(index, prod) => (
           <div
-            className="d-flex justify-content-between"
+            className="d-flex"
             style={{
               background: index % 2 === 0 ? "#00bfff" : "#ffcc99",
               color: "#333",
@@ -42,8 +42,10 @@ const CosmoticList = ({ items, setUpdateProduct, filter, setFilter }) => {
             }}
             key={prod._id}
           >
-            <div>
+          <div className="col-1 text-center">{index + 1}</div>
+            <div className="col-10">
               {" "}
+              
               <h3>{prod.Description}</h3>
               <h6>{prod.Company} </h6>
               <h6>
