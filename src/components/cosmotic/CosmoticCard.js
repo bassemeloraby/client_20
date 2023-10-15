@@ -31,6 +31,7 @@ const CosmoticCard = ({ updatedPoduct }) => {
       <h2>{updatedPoduct.Description}</h2>
       <h3>{updatedPoduct.Company}</h3>
       <h3>{updatedPoduct.Category}</h3>
+      <h3>{updatedPoduct.usedArea}</h3>
       <Link
         to={l1 + updatedPoduct.Description + l2}
         target="_blank"

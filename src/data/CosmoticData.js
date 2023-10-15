@@ -65,7 +65,11 @@ export const usedAreaDb = [
     name: "Foot",
   },
   {
-    id: 3,
+    id: 4,
     name: "Eye",
+  },
+  {
+    id: 5,
+    name: "Body",
   },
 ];

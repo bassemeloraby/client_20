@@ -44,6 +44,7 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
       const res = await axios.patch(`${url}/${updateProduct._id}`, {
         Company: Company,
         Category: Category,
+        usedArea: usedArea,
       });
 
       setLoading(false);
