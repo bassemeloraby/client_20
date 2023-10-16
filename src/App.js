@@ -14,7 +14,7 @@ function App() {
   return (
     <Fragment>
     <Header />
-      <div className="container">
+      <div className="container" >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/allD/*" element={<AllDrugs />} />

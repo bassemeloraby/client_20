@@ -1,49 +1,97 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { CategoryDb, usedAreaDb } from "../../data/CosmoticData";
-// import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 
-const CosmoticFilter = ({ cosmotics, setFilter, filter }) => {
-  const [items, setItems] = useState([]);
-  const [usedAreaF, setUsedAreaF] = useState("");
+const CosmoticFilter = ({ cosmotics }) => {
+  const [filterKind, setFilterKind] = useState(false);
+  const [openCategory, setOpenCategory] = useState(false);
+  const [openUsedArea, setOpenUsedArea] = useState(false);
+  const [items, setItems] = useState(cosmotics);
+  const [categoryFilter, setCategoryFilter] = useState();
+  const [usedAreaFilter, setUsedAreaFilter] = useState();
 
   useEffect(() => {
-    const filterdata = cosmotics.filter(
-      (c) => c.Category === filter && c.usedArea === usedAreaF
-    );
+    if (filterKind === "no") {
+      setOpenCategory(false);
+      setOpenUsedArea(false);
+    }
+    if (filterKind === "Category") {
+      setOpenCategory(true);
+      setOpenUsedArea(false);
+      const filterdata = cosmotics.filter((c) => c.Category === categoryFilter);
 
-    setItems(filterdata);
-  }, [cosmotics, filter, usedAreaF]);
+      setItems(filterdata);
+    }
+    if (filterKind === "usedArea") {
+      setOpenCategory(false);
+      setOpenUsedArea(true);
+      const filterdata = cosmotics.filter((c) => c.usedArea === usedAreaFilter);
+
+      setItems(filterdata);
+    }
+    if (filterKind === "all") {
+      setOpenCategory(true);
+      setOpenUsedArea(true);
+      const filterdata = cosmotics.filter(
+        (c) => c.usedArea === usedAreaFilter && c.Category === categoryFilter
+      );
+
+      setItems(filterdata);
+    }
+  }, [categoryFilter, cosmotics, usedAreaFilter, filterKind]);
+  
+
   return (
     <Fragment>
-      <div className=" mb-2">CosmoticFilter</div>
-      {items.length}
-      <div className="col-4 mb-2 d-flex">
+      <div className=" mb-2">CosmoticFilter </div>
+
+      <section className="filterKind">
         <Form.Select
           aria-label="Default select example"
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={(e) => setFilterKind(e.target.value)}
           className="me-2"
         >
-          <option value="">--Category--</option>
-          {CategoryDb.map((c, i) => (
-            <option key={i} value={c.name}>
-              {c.name}
-            </option>
-          ))}
+          <option value="no">no</option>
+          <option value="Category">Category</option>
+          <option value="usedArea">Used Area</option>
+          <option value="all">all</option>
         </Form.Select>
-        <Form.Select
-          aria-label="Default select example"
-          onChange={(e) => setUsedAreaF(e.target.value)}
-        >
-          <option value="">--Used Area--</option>
-          {usedAreaDb.map((c, i) => (
-            <option key={i} value={c.name}>
-              {c.name}
-            </option>
-          ))}
-        </Form.Select>
-      </div>
+      </section>
+
+      <section className="filters">
+        {/*-----------Category filter------------*/}
+        {openCategory && (
+          <Form.Select
+            aria-label="Default select example"
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            className="me-2"
+          >
+            <option value="">--Category--</option>
+            {CategoryDb.map((c, i) => (
+              <option key={i} value={c.name}>
+                {c.name}
+              </option>
+            ))}
+          </Form.Select>
+        )}
+
+        {/*-----------usedArea filter------------*/}
+
+        {openUsedArea && (
+          <Form.Select
+            aria-label="Default select example"
+            onChange={(e) => setUsedAreaFilter(e.target.value)}
+          >
+            <option value="">--Used Area--</option>
+            {usedAreaDb.map((c, i) => (
+              <option key={i} value={c.name}>
+                {c.name}
+              </option>
+            ))}
+          </Form.Select>
+        )}
+      </section>
 
       <Table striped bordered hover>
         <thead>

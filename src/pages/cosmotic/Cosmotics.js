@@ -17,7 +17,6 @@ const Cosmotics = () => {
   const [query, setQuery] = useState();
   const [updateProduct, setUpdateProduct] = useState();
   const [updatedPoduct, setUpdatedPoduct] = useState();
-  const [filter, setFilter] = useState();
 
   useEffect(() => {
     const fetchCosmotics = async () => {
@@ -74,13 +73,7 @@ const Cosmotics = () => {
         />
         <Route
           path="cosmoticFilter"
-          element={
-            <CosmoticFilter
-              cosmotics={cosmotics}
-              filter={filter}
-              setFilter={setFilter}
-            />
-          }
+          element={<CosmoticFilter cosmotics={cosmotics} />}
         />
         <Route
           path="cosmoticSearch"
@@ -91,8 +84,7 @@ const Cosmotics = () => {
               <CosmoticList
                 items={items}
                 setUpdateProduct={setUpdateProduct}
-                filter={filter}
-                setFilter={setFilter}
+              
               />
             </Fragment>
           }

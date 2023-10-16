@@ -2,11 +2,9 @@ import { Virtuoso } from "react-virtuoso";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
-const l1 = "https://www.google.com/search?q=";
-const l2 =
-  "&sca_esv=571711580&rlz=1C1VDKB_enSA1075SA1075&tbm=isch&sxsrf=AM9HkKkhm2K1JYgiDZSvrn-lnYR52Xi5vA:1696763801819&source=lnms&sa=X&ved=2ahUKEwj18LLdqeaBAxXD2wIHHfNMAzMQ_AUoAXoECAQQAw&biw=1366&bih=641&dpr=1";
+import { l1, l2 } from "../../data/UrlData";
 
-const CosmoticList = ({ items, setUpdateProduct, filter, setFilter }) => {
+const CosmoticList = ({ items, setUpdateProduct }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const editHandler = (prod) => {
@@ -14,13 +12,6 @@ const CosmoticList = ({ items, setUpdateProduct, filter, setFilter }) => {
     navigate(`/cosmotics/cosmoticUpdate`);
     console.log(prod);
   };
-
-  const categoryHnadler = (c) => {
-    setFilter(c);
-    console.log(c, "setCategoryFilter");
-    navigate(`/cosmotics/cosmoticFilter`);
-  };
-
   return (
     <div>
       <Virtuoso
@@ -49,12 +40,7 @@ const CosmoticList = ({ items, setUpdateProduct, filter, setFilter }) => {
               <h6>{prod.Category} for {prod.usedArea}</h6>
             </div>
             <div>
-              <span
-                style={{ cursor: "pointer", color: "blue" }}
-                onClick={() => categoryHnadler(prod.Category)}
-              >
-                Alternative
-              </span>{" "}
+             
               <Link
                 to={l1 + prod.Description + l2}
                 target="_blank"
