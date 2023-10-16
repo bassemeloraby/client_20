@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
+import { Route, Routes } from "react-router-dom";
 
 import Spinner from "../../components/Spinner";
 import AllDrugsList from "../../components/medicine/allDrugs/AllDrugsList";
@@ -53,8 +54,18 @@ const AllDrugs = () => {
       <div className="d-flex mb-2">
         <h2>All Drugs</h2>
       </div>
-      <AllDugsSearch setQuery={setQuery} />
-      <AllDrugsList items={items} />
+      <Routes>
+        <Route
+          path="allDugsSearch"
+          element={
+            <Fragment>
+              {" "}
+              <AllDugsSearch setQuery={setQuery} />
+              <AllDrugsList items={items} />
+            </Fragment>
+          }
+        />
+      </Routes>
     </div>
   );
 };

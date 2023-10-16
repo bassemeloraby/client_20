@@ -2,7 +2,7 @@ export const mainPages = [
   {
     id: 1,
     text: "Medicine",
-    ping: [{ name: "search", link: "/allD" }],
+    ping: [{ name: "search", link: "/allD/allDugsSearch" }],
   },
   {
     id: 2,

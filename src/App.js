@@ -19,7 +19,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/allD" element={<AllDrugs />} />
+          <Route path="/allD/*" element={<AllDrugs />} />
           <Route path="/indication/:ScientificName" element={<Indication />} />
           <Route path="/cosmotics/*" element={<Cosmotics />} />
 
