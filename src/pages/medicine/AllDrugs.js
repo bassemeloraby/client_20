@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllDrug, reset } from "../../features/allDrug/allDrugSlice";
+import axios from "axios";
+
 import Spinner from "../../components/Spinner";
 import AllDrugsList from "../../components/medicine/allDrugs/AllDrugsList";
 import AllDugsSearch from "../../components/medicine/allDrugs/AllDugsSearch";
 
+const url = "/api/allDrugs";
+
 const AllDrugs = () => {
+  const [allDrugs, setAllDrugs] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [query, setQuery] = useState();
 
-  const dispatch = useDispatch();
-  const { allDrugs, isLoading, isError, message } = useSelector(
-    (state) => state.allDrug
-  );
-
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
-    dispatch(getAllDrug());
-
-    return () => {
-      dispatch(reset());
+    const fetchAllDrugs = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get(`${url}`);
+        setLoading(false);
+        setAllDrugs(res.data);
+        console.log(res.data);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
     };
-  }, [isError, message, dispatch]);
+    fetchAllDrugs();
+  }, []);
 
   useEffect(() => {
     if (!query) setItems(allDrugs);
@@ -41,17 +44,19 @@ const AllDrugs = () => {
     setItems(allDrugs);
   }, [allDrugs]);
 
-  if (isLoading) {
+  if (loading) {
     return <Spinner />;
   }
 
-  return <div>
-  <div className="d-flex mb-2">
-    <h2>All Drugs</h2>
-  </div>
-  <AllDugsSearch setQuery={setQuery} />
-  <AllDrugsList items={items} />
-</div>
+  return (
+    <div>
+      <div className="d-flex mb-2">
+        <h2>All Drugs</h2>
+      </div>
+      <AllDugsSearch setQuery={setQuery} />
+      <AllDrugsList items={items} />
+    </div>
+  );
 };
 
 export default AllDrugs;
