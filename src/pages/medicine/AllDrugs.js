@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import AllDrugsList from "../../components/medicine/allDrugs/AllDrugsList";
 import AllDugsSearch from "../../components/medicine/allDrugs/AllDugsSearch";
-import ScientificName from "./ScientificName";
+import ScientificName from "../../components/medicine/allDrugs/ScientificName";
 const url = "/api/allDrugs";
 
 const AllDrugs = () => {
