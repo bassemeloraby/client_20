@@ -40,13 +40,14 @@ const CosmoticFilter = ({ cosmotics }) => {
       setItems(filterdata);
     }
   }, [categoryFilter, cosmotics, usedAreaFilter, filterKind]);
-  
 
   return (
     <Fragment>
-      <div className=" mb-2">CosmoticFilter </div>
+      <div className=" mb-2">
+        <h3>Cosmotic Filter</h3>
+      </div>
 
-      <section className="filterKind">
+      <section className="filterKind mb-2 col-3">
         <Form.Select
           aria-label="Default select example"
           onChange={(e) => setFilterKind(e.target.value)}
@@ -59,38 +60,43 @@ const CosmoticFilter = ({ cosmotics }) => {
         </Form.Select>
       </section>
 
-      <section className="filters">
+      <section
+        className="filters d-flex"
+        style={{ backgroundColor: "brown" }}
+      >
         {/*-----------Category filter------------*/}
-        {openCategory && (
-          <Form.Select
-            aria-label="Default select example"
-            onChange={(e) => setCategoryFilter(e.target.value)}
-            className="me-2"
-          >
-            <option value="">--Category--</option>
-            {CategoryDb.map((c, i) => (
-              <option key={i} value={c.name}>
-                {c.name}
-              </option>
-            ))}
-          </Form.Select>
-        )}
-
+        <div className="m-2">
+          {openCategory && (
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setCategoryFilter(e.target.value)}
+              className=""
+            >
+              <option value="">--Category--</option>
+              {CategoryDb.map((c, i) => (
+                <option key={i} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
+            </Form.Select>
+          )}
+        </div>
         {/*-----------usedArea filter------------*/}
-
-        {openUsedArea && (
-          <Form.Select
-            aria-label="Default select example"
-            onChange={(e) => setUsedAreaFilter(e.target.value)}
-          >
-            <option value="">--Used Area--</option>
-            {usedAreaDb.map((c, i) => (
-              <option key={i} value={c.name}>
-                {c.name}
-              </option>
-            ))}
-          </Form.Select>
-        )}
+        <div className="m-2">
+          {openUsedArea && (
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setUsedAreaFilter(e.target.value)}
+            >
+              <option value="">--Used Area--</option>
+              {usedAreaDb.map((c, i) => (
+                <option key={i} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
+            </Form.Select>
+          )}
+        </div>
       </section>
 
       <Table striped bordered hover>
