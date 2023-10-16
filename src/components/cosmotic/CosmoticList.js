@@ -42,29 +42,27 @@ const CosmoticList = ({ items, setUpdateProduct, filter, setFilter }) => {
             }}
             key={prod._id}
           >
-          <div className="col-1 text-center">{index + 1}</div>
             <div className="col-10">
               {" "}
-              
               <h3>{prod.Description}</h3>
               <h6>{prod.Company} </h6>
-              <h6>
-                {prod.Category}{" "}
-                <span
-                  style={{ cursor: "pointer", color: "blue" }}
-                  onClick={() => categoryHnadler(prod.Category)}
-                >
-                  Alternative
-                </span>
-                <Link
-                  to={l1 + prod.Description + l2}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "red" }}
-                >
-                  Google Pic
-                </Link>
-              </h6>
+              <h6>{prod.Category} for {prod.usedArea}</h6>
+            </div>
+            <div>
+              <span
+                style={{ cursor: "pointer", color: "blue" }}
+                onClick={() => categoryHnadler(prod.Category)}
+              >
+                Alternative
+              </span>{" "}
+              <Link
+                to={l1 + prod.Description + l2}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "red" }}
+              >
+                Google Pic
+              </Link>
             </div>
             {user && (
               <div>
