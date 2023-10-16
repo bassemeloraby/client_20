@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import AllDrugsList from "../../components/medicine/allDrugs/AllDrugsList";
 import AllDugsSearch from "../../components/medicine/allDrugs/AllDugsSearch";
-
+import ScientificName from "./ScientificName";
 const url = "/api/allDrugs";
 
 const AllDrugs = () => {
@@ -13,6 +13,7 @@ const AllDrugs = () => {
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [query, setQuery] = useState();
+  const [scientific, setScientific] = useState();
 
   useEffect(() => {
     const fetchAllDrugs = async () => {
@@ -61,10 +62,11 @@ const AllDrugs = () => {
             <Fragment>
               {" "}
               <AllDugsSearch setQuery={setQuery} />
-              <AllDrugsList items={items} />
+              <AllDrugsList items={items} setScientific={setScientific}/>
             </Fragment>
           }
         />
+        <Route path="scientificName" element={<ScientificName allDrugs={allDrugs} scientific={scientific}  />} />
       </Routes>
     </div>
   );

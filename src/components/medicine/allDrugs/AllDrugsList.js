@@ -5,11 +5,12 @@ const l1 = "https://www.google.com/search?q=";
 const l2 =
   "&sca_esv=571711580&rlz=1C1VDKB_enSA1075SA1075&tbm=isch&sxsrf=AM9HkKkhm2K1JYgiDZSvrn-lnYR52Xi5vA:1696763801819&source=lnms&sa=X&ved=2ahUKEwj18LLdqeaBAxXD2wIHHfNMAzMQ_AUoAXoECAQQAw&biw=1366&bih=641&dpr=1";
 
-function AllDrugsList({ items }) {
+function AllDrugsList({ items, setScientific }) {
   const navigate = useNavigate();
 
   const handelS = (s) => {
-    navigate(`/ScientificName/${s}`);
+    setScientific(s);
+    navigate(`/allD/scientificName`);
   };
   const handleIndication = (i) => {
     navigate(`/indication/${i}`);
@@ -50,22 +51,20 @@ function AllDrugsList({ items }) {
               {drug.PublicPrice} SR{" "}
               <span
                 style={{ cursor: "pointer", color: "green" }}
-                onClick={() =>
-                  handleIndication(drug.ScientificName)
-                }
+                onClick={() => handleIndication(drug.ScientificName)}
               >
                 Indication
               </span>{" "}
               <Link
-              to={
-                l1 + drug.TradeName + drug.Strength + drug.StrengthUnit + l2
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "red" }}
-            >
-              Google Pic
-            </Link>
+                to={
+                  l1 + drug.TradeName + drug.Strength + drug.StrengthUnit + l2
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "red" }}
+              >
+                Google Pic
+              </Link>
             </h6>
           </div>
         )}
