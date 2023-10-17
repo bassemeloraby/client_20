@@ -14,6 +14,12 @@ const CosmoticCard = ({ updatedPoduct }) => {
     window.location.reload();
     setLoading(false);
   };
+  const filter = () => {
+    setLoading(true);
+    navigate(`/cosmotics/cosmoticFilter`);
+    window.location.reload();
+    setLoading(false);
+  };
 
   if (loading) {
     return <Spinner />;
@@ -23,6 +29,9 @@ const CosmoticCard = ({ updatedPoduct }) => {
     <Fragment>
       <Button variant="primary" onClick={search}>
         Cosmotic Search
+      </Button>{" "}
+      <Button variant="primary" onClick={filter}>
+        Cosmotic Filter
       </Button>{" "}
       <div>CosmoticCard</div>
       <h2>{updatedPoduct.Description}</h2>

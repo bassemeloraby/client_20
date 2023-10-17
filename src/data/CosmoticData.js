@@ -76,4 +76,8 @@ export const usedAreaDb = [
     id: 6,
     name: "Lip",
   },
+  {
+    id: 7,
+    name: "Vaginal",
+  },
 ];

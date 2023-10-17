@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Button from "react-bootstrap/Button";
@@ -7,28 +7,27 @@ import Form from "react-bootstrap/Form";
 import Spinner from "../Spinner";
 import { CategoryDb, CompanyDb, usedAreaDb } from "../../data/CosmoticData";
 const url = "/api/products";
-const l1 = "https://www.google.com/search?q=";
-const l2 =
-  "&sca_esv=571711580&rlz=1C1VDKB_enSA1075SA1075&tbm=isch&sxsrf=AM9HkKkhm2K1JYgiDZSvrn-lnYR52Xi5vA:1696763801819&source=lnms&sa=X&ved=2ahUKEwj18LLdqeaBAxXD2wIHHfNMAzMQ_AUoAXoECAQQAw&biw=1366&bih=641&dpr=1";
-const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
+import { l1, l2 } from "../../data/UrlData";
+
+const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct, user }) => {
   const navigate = useNavigate();
-  // const [updateCompany, setUpdateCompany] = useState();
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     Company: updateProduct.Company,
     Category: updateProduct.Category,
     usedArea: updateProduct.usedArea,
   });
+
   const { Company, Category, usedArea } = formData;
   const cancelHandler = (cos) => {
     navigate(`/cosmotics/cosmoticSearch`);
     console.log(cos);
   };
-
-  // const onChange = (e) => {
-  //   console.log(e.target.value);
-  //   setUpdateCompany(e.target.value);
-  // };
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -123,7 +122,7 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct }) => {
           </Form.Group>{" "}
           {/*-------------updateProduct usedArea-----------------*/}{" "}
           <Form.Group className="mb-3">
-            <Form.Label>Category</Form.Label>
+            <Form.Label>Used Area</Form.Label>
             <Form.Control
               type="text"
               id="usedArea"

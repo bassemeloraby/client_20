@@ -24,7 +24,6 @@ const Login = () => {
 
   useEffect(() => {
     if (isError) {
-      // toast.error(message);
       setFormData({ email: "", password: "" });
       setWrongMessage(true);
       navigate("/login");

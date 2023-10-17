@@ -7,6 +7,7 @@ import CosmoticSearch from "../../components/cosmotic/CosmoticSearch";
 import CosmoticUpdate from "../../components/cosmotic/CosmoticUpdate";
 import CosmoticCard from "../../components/cosmotic/CosmoticCard";
 import CosmoticFilter from "../../components/cosmotic/CosmoticFilter";
+import { useSelector } from "react-redux";
 
 const url = "/api/products";
 
@@ -17,6 +18,8 @@ const Cosmotics = () => {
   const [query, setQuery] = useState();
   const [updateProduct, setUpdateProduct] = useState();
   const [updatedPoduct, setUpdatedPoduct] = useState();
+
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchCosmotics = async () => {
@@ -64,6 +67,7 @@ const Cosmotics = () => {
             <CosmoticUpdate
               updateProduct={updateProduct}
               setUpdatedPoduct={setUpdatedPoduct}
+              user={user}
             />
           }
         />
@@ -73,7 +77,7 @@ const Cosmotics = () => {
         />
         <Route
           path="cosmoticFilter"
-          element={<CosmoticFilter cosmotics={cosmotics} />}
+          element={<CosmoticFilter cosmotics={cosmotics} user={user} setUpdateProduct={setUpdateProduct}/>}
         />
         <Route
           path="cosmoticSearch"
@@ -84,7 +88,7 @@ const Cosmotics = () => {
               <CosmoticList
                 items={items}
                 setUpdateProduct={setUpdateProduct}
-              
+                user={user}
               />
             </Fragment>
           }

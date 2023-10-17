@@ -89,7 +89,7 @@ function Header() {
           ) : (
             <HiOutlineLogin
               style={{ fontSize: "xx-large", cursor: "pointer" }}
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/login")}
             />
           )}
         </Container>

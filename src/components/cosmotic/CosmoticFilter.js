@@ -2,14 +2,17 @@ import React, { Fragment, useEffect, useState } from "react";
 import { CategoryDb, usedAreaDb } from "../../data/CosmoticData";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import {  useNavigate } from "react-router-dom";
+const CosmoticFilter = ({ cosmotics,user,setUpdateProduct }) => {
 
-const CosmoticFilter = ({ cosmotics }) => {
   const [filterKind, setFilterKind] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
   const [openUsedArea, setOpenUsedArea] = useState(false);
   const [items, setItems] = useState(cosmotics);
   const [categoryFilter, setCategoryFilter] = useState();
   const [usedAreaFilter, setUsedAreaFilter] = useState();
+ const navigate = useNavigate();
 
   useEffect(() => {
     if (filterKind === "no") {
@@ -41,10 +44,16 @@ const CosmoticFilter = ({ cosmotics }) => {
     }
   }, [categoryFilter, cosmotics, usedAreaFilter, filterKind]);
 
+  const editHandler = (prod) => {
+    setUpdateProduct(prod);
+    navigate(`/cosmotics/cosmoticUpdate`);
+    console.log(prod);
+  };
+
   return (
     <Fragment>
       <div className=" mb-2">
-        <h3>Cosmotic Filter</h3>
+        <h3>Cosmotic Filter {items.length}</h3>
       </div>
 
       <section className="filterKind mb-2 col-3">
@@ -61,11 +70,11 @@ const CosmoticFilter = ({ cosmotics }) => {
       </section>
 
       <section
-        className="filters d-flex"
+        className="filters d-flex p-2"
         style={{ backgroundColor: "brown" }}
       >
         {/*-----------Category filter------------*/}
-        <div className="m-2">
+        <div className="me-2">
           {openCategory && (
             <Form.Select
               aria-label="Default select example"
@@ -82,7 +91,7 @@ const CosmoticFilter = ({ cosmotics }) => {
           )}
         </div>
         {/*-----------usedArea filter------------*/}
-        <div className="m-2">
+        <div className="">
           {openUsedArea && (
             <Form.Select
               aria-label="Default select example"
@@ -108,9 +117,16 @@ const CosmoticFilter = ({ cosmotics }) => {
         </thead>
         <tbody>
           {items.map((c, i) => (
-            <tr key={i}>
+            <tr key={c._id}>
               <td className="text-center">{i + 1}</td>
               <td>{c.Description}</td>
+              <td>{user && (
+                <div>
+                  <Button variant="success" onClick={() => editHandler(c)}>
+                    Edit
+                  </Button>{" "}
+                </div>
+              )}</td>
             </tr>
           ))}
         </tbody>
