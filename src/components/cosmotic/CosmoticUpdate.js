@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { l1, l2 } from "../../data/UrlData";
+import { CategoryDb, CompanyDb, usedAreaDb } from "../../data/CosmoticData";
 import axios from "axios";
-
+import Spinner from "../Spinner";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Spinner from "../Spinner";
-import { CategoryDb, CompanyDb, usedAreaDb } from "../../data/CosmoticData";
+
 const url = "/api/products";
-import { l1, l2 } from "../../data/UrlData";
 
 const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct, user }) => {
   const navigate = useNavigate();
