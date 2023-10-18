@@ -1,6 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+
 import Spinner from "../Spinner";
 import { l1, l2 } from "../../data/UrlData";
 
@@ -27,25 +30,36 @@ const CosmoticCard = ({ updatedPoduct }) => {
 
   return (
     <Fragment>
-      <Button variant="primary" onClick={search}>
-        Cosmotic Search
-      </Button>{" "}
-      <Button variant="primary" onClick={filter}>
-        Cosmotic Filter
-      </Button>{" "}
       <div>CosmoticCard</div>
-      <h2>{updatedPoduct.Description}</h2>
-      <h3>{updatedPoduct.Company}</h3>
-      <h3>{updatedPoduct.Category}</h3>
-      <h3>{updatedPoduct.usedArea}</h3>
-      <Link
-        to={l1 + updatedPoduct.Description + l2}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ color: "red" }}
-      >
-        Google Pic
-      </Link>
+      <div className="buttons mb-2 p-2" style={{ backgroundColor: "brown" }}>
+        <Button variant="primary" onClick={search}>
+          Cosmotic Search
+        </Button>{" "}
+        <Button variant="primary" onClick={filter}>
+          Cosmotic Filter
+        </Button>{" "}
+      </div>
+
+      <Card style={{ width: "30rem" }}>
+        <Card.Body>
+          <Card.Title>{updatedPoduct.Description}</Card.Title>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>Company: {updatedPoduct.Company}</ListGroup.Item>
+          <ListGroup.Item>Category: {updatedPoduct.Category}</ListGroup.Item>
+          <ListGroup.Item>Used Area: {updatedPoduct.usedArea}</ListGroup.Item>
+          <ListGroup.Item>
+            <Link
+              to={l1 + updatedPoduct.Description + l2}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "red" }}
+            >
+              Google Pic
+            </Link>
+          </ListGroup.Item>
+        </ListGroup>
+      </Card>
     </Fragment>
   );
 };

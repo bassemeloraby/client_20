@@ -4,6 +4,7 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {  useNavigate } from "react-router-dom";
+import GoogleLink from "../GoogleLink";
 const CosmoticFilter = ({ cosmotics,user,setUpdateProduct }) => {
 
   const [filterKind, setFilterKind] = useState(false);
@@ -65,7 +66,7 @@ const CosmoticFilter = ({ cosmotics,user,setUpdateProduct }) => {
           <option value="no">no</option>
           <option value="Category">Category</option>
           <option value="usedArea">Used Area</option>
-          <option value="all">all</option>
+          <option value="all">and</option>
         </Form.Select>
       </section>
 
@@ -119,7 +120,7 @@ const CosmoticFilter = ({ cosmotics,user,setUpdateProduct }) => {
           {items.map((c, i) => (
             <tr key={c._id}>
               <td className="text-center">{i + 1}</td>
-              <td>{c.Description}</td>
+              <td className="d-flex justify-content-between"><span>{c.Description}</span> <GoogleLink name={c}/></td>
               <td>{user && (
                 <div>
                   <Button variant="success" onClick={() => editHandler(c)}>

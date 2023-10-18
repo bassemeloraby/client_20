@@ -1,8 +1,8 @@
 import { Virtuoso } from "react-virtuoso";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
-import { l1, l2 } from "../../data/UrlData";
+import GoogleLink from "../GoogleLink";
 
 const CosmoticList = ({ items, setUpdateProduct, user }) => {
   const navigate = useNavigate();
@@ -43,14 +43,7 @@ const CosmoticList = ({ items, setUpdateProduct, user }) => {
             </div>
             <div className="d-flex">
               <div className="me-2">
-                <Link
-                  to={l1 + prod.Description + l2}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "red" }}
-                >
-                  Google Pic
-                </Link>
+                <GoogleLink name={prod} />
               </div>
 
               {user && (

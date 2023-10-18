@@ -81,16 +81,18 @@ function Header() {
             </Link>
           </Navbar.Brand>
           {/* login icon */}
-          {user ? (
-            <HiOutlineLogout
-              onClick={onLogout}
-              style={{ fontSize: "xx-large", cursor: "pointer" }}
-            />
-          ) : (
-            <HiOutlineLogin
-              style={{ fontSize: "xx-large", cursor: "pointer" }}
-              onClick={() => navigate("/login")}
-            />
+          {user ? (<div><span className="me-2">Hello Bassem</span><HiOutlineLogout
+            onClick={onLogout}
+            style={{ fontSize: "xx-large", cursor: "pointer" }}
+          />
+          
+          </div>
+            
+          ) : ( <div><span className="me-2">Hello Guest</span><HiOutlineLogin
+            style={{ fontSize: "xx-large", cursor: "pointer" }}
+            onClick={() => navigate("/login")}
+          /></div>
+            
           )}
         </Container>
       </Navbar>

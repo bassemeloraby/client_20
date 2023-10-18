@@ -61,11 +61,11 @@ const CosmoticUpdate = ({ updateProduct, setUpdatedPoduct, user }) => {
   }
 
   return (
-    <div>
+    <div key={updateProduct.id}>
       <h2>CosmoticUpdate</h2>
 
-      <div className="col-8">
-        <form onSubmit={onSubmit}>
+      <div className="col-8" key={updateProduct.id}>
+        <form onSubmit={onSubmit} key={updateProduct._id}>
           <Form.Group className="mb-3">
             <Form.Label>Description</Form.Label>
             <Form.Control placeholder={updateProduct.Description} disabled />

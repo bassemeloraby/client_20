@@ -9,12 +9,17 @@ import Insurance from "./pages/insurance/Insurance";
 import AllDrugs from "./pages/medicine/AllDrugs";
 import Cosmotics from "./pages/cosmotic/Cosmotics";
 import Indication from "./pages/medicine/Indication";
+import IdleTimerContainer from "./components/IdleTimerContainer";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <Fragment>
-    <Header />
-      <div className="container" >
+      <Header />
+      {user && <IdleTimerContainer></IdleTimerContainer>}
+      <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/allD/*" element={<AllDrugs />} />
