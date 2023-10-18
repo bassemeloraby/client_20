@@ -11,6 +11,7 @@ import Cosmotics from "./pages/cosmotic/Cosmotics";
 import Indication from "./pages/medicine/Indication";
 import IdleTimerContainer from "./components/IdleTimerContainer";
 import { useSelector } from "react-redux";
+import Footer from "./components/Footer";
 
 function App() {
   const { user } = useSelector((state) => state.auth);
@@ -33,6 +34,7 @@ function App() {
           <ToastContainer className="justify-content-md-center" />
         </div>
       </div>
+      <Footer />
     </Fragment>
   );
 }

@@ -49,6 +49,9 @@ function Header() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Nav.Link as={Link} to="/" onClick={handleClose}>
+                  Home
+                </Nav.Link>
                 {mainPages.map((mainPage) => (
                   <NavDropdown
                     title={mainPage.text}
@@ -81,18 +84,22 @@ function Header() {
             </Link>
           </Navbar.Brand>
           {/* login icon */}
-          {user ? (<div><span className="me-2">Hello Bassem</span><HiOutlineLogout
-            onClick={onLogout}
-            style={{ fontSize: "xx-large", cursor: "pointer" }}
-          />
-          
-          </div>
-            
-          ) : ( <div><span className="me-2">Hello Guest</span><HiOutlineLogin
-            style={{ fontSize: "xx-large", cursor: "pointer" }}
-            onClick={() => navigate("/login")}
-          /></div>
-            
+          {user ? (
+            <div>
+              <span className="me-2">Hello Bassem</span>
+              <HiOutlineLogout
+                onClick={onLogout}
+                style={{ fontSize: "xx-large", cursor: "pointer" }}
+              />
+            </div>
+          ) : (
+            <div>
+              <span className="me-2">Hello Guest</span>
+              <HiOutlineLogin
+                style={{ fontSize: "xx-large", cursor: "pointer" }}
+                onClick={() => navigate("/login")}
+              />
+            </div>
           )}
         </Container>
       </Navbar>
