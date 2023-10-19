@@ -1,11 +1,11 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import React, { useState } from "react";
-import { l1, l2 } from "../../data/UrlData";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { CategoryDb, CompanyDb, usedAreaDb } from "../../data/CosmoticData";
 import axios from "axios";
 import Spinner from "../Spinner";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import GoogleLink from "../GoogleLink";
 
 const url = "/api/products";
 // -------------------------------CosmoticUpdate components---------------------------------//
@@ -48,7 +48,7 @@ const CosmoticUpdate = ({
       const res = await axios.patch(`${url}/${id}`, {
         Company: Company,
         Category: Category,
-        usedArea: use1 + "," + use2,
+        usedArea: use1 + " " + use2,
       });
 
       setLoading(false);
@@ -61,11 +61,11 @@ const CosmoticUpdate = ({
     }
   };
   // ----------useEffect--------//
-  // useEffect(() => {
-  //   if (!user) {
-  //     navigate("/");
-  //   }
-  // }, [user, navigate]);
+  useEffect(() => {
+    if (!updateProduct) {
+      navigate("/");
+    }
+  }, [updateProduct, navigate]);
   // --------------------loading--------//
   if (loading) {
     return <Spinner />;
@@ -75,25 +75,28 @@ const CosmoticUpdate = ({
     <div>
       {/*-----------------header page-----------------*/}
       <h2>CosmoticUpdate</h2>
+      {/*-----------------cancel section-----------------*/}
+      <div className="mb-2">
+        <Button variant="success" onClick={() => cancelHandler()}>
+          Cancel
+        </Button>{" "}
+      </div>
       {/*-----------------update form-----------------*/}
       {cosmotics
         .filter((c) => c._id === id)
         .map((c, i) => (
-          <div className="col-8" key={c._id}>
+          <div
+            className="text-light p-2 mb-2"
+            key={c._id}
+            style={{ backgroundColor: "brown" }}
+          >
             {" "}
             <form onSubmit={onSubmit}>
               <Form.Group className="mb-3">
                 <Form.Label>Description</Form.Label>
                 <Form.Control placeholder={c.Description} disabled />
               </Form.Group>
-              <Link
-                to={l1 + c.Description + l2}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "red" }}
-              >
-                Google Pic
-              </Link>
+              <GoogleLink color="white" name={c} />
               {/*---------updateProduct Company---------*/}{" "}
               <Form.Group className="mb-3">
                 <Form.Label>Company</Form.Label>
@@ -107,7 +110,7 @@ const CosmoticUpdate = ({
                   list="Company1"
                 />
                 <datalist id="Company1">
-                  {CompanyDb.map((c,i) => (
+                  {CompanyDb.map((c, i) => (
                     <option key={i} value={c.name}>
                       {c.name}
                     </option>
@@ -128,7 +131,7 @@ const CosmoticUpdate = ({
                 />
                 <datalist id="Category1">
                   {CategoryDb.sort((a, b) => (a.name < b.name ? -1 : 1)).map(
-                    (c,i) => (
+                    (c, i) => (
                       <option key={i} value={c.name}>
                         {c.name}
                       </option>
@@ -146,56 +149,50 @@ const CosmoticUpdate = ({
                   defaultValue={usedArea}
                   placeholder="Enter usedArea"
                   onChange={onChange}
-                  list="usedArea1"
+                  disabled
                 />
-                <datalist id="usedArea1">
+              </Form.Group>{" "}
+              {/*-------------usedArea select-----------------*/}{" "}
+              <div className="usedAreaSelect d-flex p-1">
+                {" "}
+                {/*-------------used1 select-----------------*/}{" "}
+                <Form.Select
+                  aria-label="Default select example"
+                  onChange={onChange}
+                  name="use1"
+                >
+                  <option>use1</option>
                   {usedAreaDb
                     .sort((a, b) => (a.name < b.name ? -1 : 1))
-                    .map((c,i) => (
+                    .map((c, i) => (
                       <option key={i} value={c.name}>
                         {c.name}
                       </option>
                     ))}
-                </datalist>
-              </Form.Group>{" "}
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value="Lip"
-                  id="flexCheckDefault"
-                  onChange={onChange}
-                  name="use1"
-                />
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                  Lip
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value="Vaginal"
-                  id="flexCheckChecked"
+                </Form.Select>
+                {/*-------------used2 select-----------------*/}{" "}
+                <Form.Select
+                  aria-label="Default select example"
                   onChange={onChange}
                   name="use2"
-                />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
-                  Vaginal
-                </label>
+                >
+                  <option>use2</option>
+                  {usedAreaDb
+                    .sort((a, b) => (a.name < b.name ? -1 : 1))
+                    .map((c, i) => (
+                      <option key={i} value={c.name}>
+                        {c.name}
+                      </option>
+                    ))}
+                </Form.Select>
               </div>
+              
               <Button variant="primary" type="submit">
                 Submit
               </Button>
             </form>
           </div>
         ))}
-      {/*-----------------cancel section-----------------*/}
-      <div className="mt-2">
-        <Button variant="success" onClick={() => cancelHandler()}>
-          Cancel
-        </Button>{" "}
-      </div>
     </div>
   );
 };
