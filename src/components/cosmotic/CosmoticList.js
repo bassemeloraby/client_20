@@ -1,16 +1,14 @@
 import { Virtuoso } from "react-virtuoso";
 import { useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import GoogleLink from "../GoogleLink";
 
-const CosmoticList = ({ items, user }) => {
+const CosmoticList = ({ items, user, setUpdateProduct }) => {
   const navigate = useNavigate();
-  // const { user } = useSelector((state) => state.auth);
-  const editHandler = (id) => {
-    // setUpdateProduct(prod);
-    navigate(`/cosmotics/cosmoticUpdate/${id}`);
-    console.log(id);
+  const editHandler = (prod) => {
+    setUpdateProduct(prod);
+    navigate(`/cosmotics/cosmoticUpdate/${prod._id}`);
+    console.log(prod._id);
   };
   return (
     <div>
@@ -48,7 +46,7 @@ const CosmoticList = ({ items, user }) => {
 
               {user && (
                 <div>
-                  <Button variant="success" onClick={() => editHandler(prod._id)}>
+                  <Button variant="success" onClick={() => editHandler(prod)}>
                     Edit
                   </Button>{" "}
                 </div>

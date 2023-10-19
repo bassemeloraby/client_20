@@ -8,28 +8,30 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 const url = "/api/products";
-
-const CosmoticUpdate = ({ setUpdatedPoduct, user, cosmotics }) => {
+// -------------------------------CosmoticUpdate components---------------------------------//
+const CosmoticUpdate = ({
+  setUpdatedPoduct,
+  user,
+  cosmotics,
+  updateProduct,
+}) => {
+  // main constants
   const navigate = useNavigate();
   const { id } = useParams();
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, [user, navigate]);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    Company: "",
-    Category: "",
+    Company: updateProduct.Company,
+    Category: updateProduct.Category,
+    usedArea: updateProduct.usedArea,
     use1: "",
     use2: "",
   });
 
-  const { Company, Category, use1, use2 } = formData;
-  const cancelHandler = (cos) => {
+  const { Company, Category, usedArea, use1, use2 } = formData;
+  // -----------functions-------------//
+  const cancelHandler = () => {
     navigate(`/cosmotics/cosmoticSearch`);
-    console.log(cos);
+    console.log();
   };
 
   const onChange = (e) => {
@@ -58,19 +60,26 @@ const CosmoticUpdate = ({ setUpdatedPoduct, user, cosmotics }) => {
       console.log(error);
     }
   };
-
+  // ----------useEffect--------//
+  // useEffect(() => {
+  //   if (!user) {
+  //     navigate("/");
+  //   }
+  // }, [user, navigate]);
+  // --------------------loading--------//
   if (loading) {
     return <Spinner />;
   }
-
+  // ------------------------------------CosmoticUpdate components -----------------//
   return (
     <div>
+      {/*-----------------header page-----------------*/}
       <h2>CosmoticUpdate</h2>
-
+      {/*-----------------update form-----------------*/}
       {cosmotics
         .filter((c) => c._id === id)
         .map((c, i) => (
-          <div className="col-8" key={i}>
+          <div className="col-8" key={c._id}>
             {" "}
             <form onSubmit={onSubmit}>
               <Form.Group className="mb-3">
@@ -92,14 +101,14 @@ const CosmoticUpdate = ({ setUpdatedPoduct, user, cosmotics }) => {
                   type="text"
                   id="Company"
                   name="Company"
-                  defaultValue={c.Company}
+                  defaultValue={Company}
                   placeholder="Enter Company"
                   onChange={onChange}
                   list="Company1"
                 />
                 <datalist id="Company1">
-                  {CompanyDb.map((c) => (
-                    <option key={c._id} value={c.name}>
+                  {CompanyDb.map((c,i) => (
+                    <option key={i} value={c.name}>
                       {c.name}
                     </option>
                   ))}
@@ -112,15 +121,15 @@ const CosmoticUpdate = ({ setUpdatedPoduct, user, cosmotics }) => {
                   type="text"
                   id="Category"
                   name="Category"
-                  defaultValue={c.Category}
+                  defaultValue={Category}
                   placeholder="Enter Category"
                   onChange={onChange}
                   list="Category1"
                 />
                 <datalist id="Category1">
                   {CategoryDb.sort((a, b) => (a.name < b.name ? -1 : 1)).map(
-                    (c) => (
-                      <option key={c._id} value={c.name}>
+                    (c,i) => (
+                      <option key={i} value={c.name}>
                         {c.name}
                       </option>
                     )
@@ -134,7 +143,7 @@ const CosmoticUpdate = ({ setUpdatedPoduct, user, cosmotics }) => {
                   type="text"
                   id="usedArea"
                   name="usedArea"
-                  defaultValue={c.usedArea}
+                  defaultValue={usedArea}
                   placeholder="Enter usedArea"
                   onChange={onChange}
                   list="usedArea1"
@@ -142,8 +151,8 @@ const CosmoticUpdate = ({ setUpdatedPoduct, user, cosmotics }) => {
                 <datalist id="usedArea1">
                   {usedAreaDb
                     .sort((a, b) => (a.name < b.name ? -1 : 1))
-                    .map((c) => (
-                      <option key={c._id} value={c.name}>
+                    .map((c,i) => (
+                      <option key={i} value={c.name}>
                         {c.name}
                       </option>
                     ))}
@@ -181,8 +190,7 @@ const CosmoticUpdate = ({ setUpdatedPoduct, user, cosmotics }) => {
             </form>
           </div>
         ))}
-
- 
+      {/*-----------------cancel section-----------------*/}
       <div className="mt-2">
         <Button variant="success" onClick={() => cancelHandler()}>
           Cancel

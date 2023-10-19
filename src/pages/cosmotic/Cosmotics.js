@@ -55,31 +55,16 @@ const Cosmotics = () => {
   if (loading) {
     return <Spinner />;
   }
+  // ------------------------------------cosmotic components -----------------//
   return (
     <div>
+      {/*-----------------header page-----------------*/}
       <div className="d-flex mb-2 justify-content-center">
         <h2>Cosmotics</h2>
       </div>
+      {/*-----------------cosmotics routes-----------------*/}
       <Routes>
-        <Route
-          path="cosmoticUpdate/:id"
-          element={
-            <CosmoticUpdate
-              updateProduct={updateProduct}
-              setUpdatedPoduct={setUpdatedPoduct}
-              user={user}
-              cosmotics={cosmotics}
-            />
-          }
-        />
-        <Route
-          path="cosmoticCard"
-          element={<CosmoticCard updatedPoduct={updatedPoduct} />}
-        />
-        <Route
-          path="cosmoticFilter"
-          element={<CosmoticFilter cosmotics={cosmotics} user={user} setUpdateProduct={setUpdateProduct}/>}
-        />
+        {/*-----------------cosmoticSearch-----------------*/}
         <Route
           path="cosmoticSearch"
           element={
@@ -92,6 +77,38 @@ const Cosmotics = () => {
                 user={user}
               />
             </Fragment>
+          }
+        />
+
+        {/*-----------------CosmoticUpdate-----------------*/}
+        <Route
+        key={1}
+          path="cosmoticUpdate/:id"
+          element={
+            <CosmoticUpdate
+              updateProduct={updateProduct}
+              setUpdatedPoduct={setUpdatedPoduct}
+              user={user}
+              cosmotics={cosmotics}
+            />
+          }
+        />
+        {/*-----------------cosmoticCard-----------------*/}
+
+        <Route
+          path="cosmoticCard"
+          element={<CosmoticCard updatedPoduct={updatedPoduct} />}
+        />
+        {/*-----------------cosmoticFilter-----------------*/}
+
+        <Route
+          path="cosmoticFilter"
+          element={
+            <CosmoticFilter
+              cosmotics={cosmotics}
+              user={user}
+              setUpdateProduct={setUpdateProduct}
+            />
           }
         />
       </Routes>
