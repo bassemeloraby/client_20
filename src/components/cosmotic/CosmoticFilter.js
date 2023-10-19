@@ -128,7 +128,7 @@ const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
             <tr key={prod._id}>
               <td className="text-center">{i + 1}</td>
               <td className="d-flex justify-content-between">
-                <span>{prod.Description}</span> <GoogleLink name={prod} />
+                <span>{prod.Description}</span> <GoogleLink name={prod.Description} />
               </td>
               <td>
                 {user && (

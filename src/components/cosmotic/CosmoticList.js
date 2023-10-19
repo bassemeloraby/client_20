@@ -41,7 +41,7 @@ const CosmoticList = ({ items, user, setUpdateProduct }) => {
             </div>
             <div className="d-flex">
               <div className="me-2">
-                <GoogleLink name={prod} />
+                <GoogleLink name={prod.Description} />
               </div>
 
               {user && (

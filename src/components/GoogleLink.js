@@ -5,7 +5,7 @@ import { l1, l2 } from "../data/UrlData";
 const GoogleLink = ({ name, color }) => {
   return (
     <Link
-      to={l1 + name.Description + l2}
+      to={l1 + name + l2}
       target="_blank"
       rel="noopener noreferrer"
       style={color ? { color: color } : { color: "red" }}

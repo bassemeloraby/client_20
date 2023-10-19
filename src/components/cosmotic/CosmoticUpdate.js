@@ -96,7 +96,7 @@ const CosmoticUpdate = ({
                 <Form.Label>Description</Form.Label>
                 <Form.Control placeholder={c.Description} disabled />
               </Form.Group>
-              <GoogleLink color="white" name={c} />
+              <GoogleLink color="white" name={c.Description} />
               {/*---------updateProduct Company---------*/}{" "}
               <Form.Group className="mb-3">
                 <Form.Label>Company</Form.Label>
