@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { l1, l2 } from "../../data/UrlData";
 import { CategoryDb, CompanyDb, usedAreaDb } from "../../data/CosmoticData";
 import axios from "axios";

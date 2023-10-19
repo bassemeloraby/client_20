@@ -3,55 +3,59 @@ import { CategoryDb, usedAreaDb } from "../../data/CosmoticData";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GoogleLink from "../GoogleLink";
-const CosmoticFilter = ({ cosmotics,user,setUpdateProduct }) => {
-
+const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
   const [filterKind, setFilterKind] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
   const [openUsedArea, setOpenUsedArea] = useState(false);
   const [items, setItems] = useState(cosmotics);
   const [categoryFilter, setCategoryFilter] = useState();
   const [usedAreaFilter, setUsedAreaFilter] = useState();
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (filterKind === "no") {
       setOpenCategory(false);
       setOpenUsedArea(false);
-      setItems(cosmotics)
+      setItems(cosmotics);
     }
     if (filterKind === "Category") {
       setOpenCategory(true);
       setOpenUsedArea(false);
-      const filterdata = cosmotics.filter((c) => c.Category.includes(categoryFilter));
+      const filterdata = cosmotics.filter((c) =>
+        c.Category.includes(categoryFilter)
+      );
 
       setItems(filterdata);
     }
     if (filterKind === "usedArea") {
       setOpenCategory(false);
       setOpenUsedArea(true);
-      const filterdata = cosmotics.filter((c) => c.usedArea.includes(usedAreaFilter) );
+      const filterdata = cosmotics.filter((c) =>
+        c.usedArea.includes(usedAreaFilter)
+      );
 
       setItems(filterdata);
     }
     if (filterKind === "all") {
       setOpenCategory(true);
       setOpenUsedArea(true);
-      const filterdata =cosmotics.filter(
-        (c) => c.usedArea.includes(usedAreaFilter) && c.Category.includes(categoryFilter)
+      const filterdata = cosmotics.filter(
+        (c) =>
+          c.usedArea.includes(usedAreaFilter) &&
+          c.Category.includes(categoryFilter)
       );
 
       setItems(filterdata);
     }
-    
-    
   }, [categoryFilter, cosmotics, usedAreaFilter, filterKind]);
-console.log(items,"items")
+  console.log(items, "items");
+
   const editHandler = (prod) => {
     setUpdateProduct(prod);
-    navigate(`/cosmotics/cosmoticUpdate`);
-    console.log(prod);
+    navigate(`/cosmotics/cosmoticUpdate/${prod._id}`);
+    console.log(prod._id);
   };
 
   return (
@@ -120,17 +124,21 @@ console.log(items,"items")
           </tr>
         </thead>
         <tbody>
-          {items.map((c, i) => (
-            <tr key={c._id}>
+          {items.map((prod, i) => (
+            <tr key={prod._id}>
               <td className="text-center">{i + 1}</td>
-              <td className="d-flex justify-content-between"><span>{c.Description}</span> <GoogleLink name={c}/></td>
-              <td>{user && (
-                <div>
-                  <Button variant="success" onClick={() => editHandler(c)}>
-                    Edit
-                  </Button>{" "}
-                </div>
-              )}</td>
+              <td className="d-flex justify-content-between">
+                <span>{prod.Description}</span> <GoogleLink name={prod} />
+              </td>
+              <td>
+                {user && (
+                  <div>
+                    <Button variant="success" onClick={() => editHandler(prod)}>
+                      Edit
+                    </Button>{" "}
+                  </div>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
