@@ -12,6 +12,7 @@ import Indication from "./pages/medicine/Indication";
 import IdleTimerContainer from "./components/IdleTimerContainer";
 import { useSelector } from "react-redux";
 import Footer from "./components/Footer";
+import NotFind from "./pages/NotFind";
 
 function App() {
   const { user } = useSelector((state) => state.auth);
@@ -22,6 +23,7 @@ function App() {
       {user && <IdleTimerContainer></IdleTimerContainer>}
       <div className="container">
         <Routes>
+          <Route path="/*" element={<NotFind />} />
           <Route path="/" element={<Home />} />
           <Route path="/allD/*" element={<AllDrugs />} />
           <Route path="/indication/:ScientificName" element={<Indication />} />

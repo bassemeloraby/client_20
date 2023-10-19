@@ -10,7 +10,7 @@ function Insurance() {
     <section className="">
       <Nav className="bg-dark mb-2">
         {insuranceLinks.map((link, index) => (
-          <Nav.Item>
+          <Nav.Item key={index}>
             <Nav.Link href={link.link} target="_blank">
               {link.text}
             </Nav.Link>

@@ -86,7 +86,7 @@ function Header() {
           {/* login icon */}
           {user ? (
             <div>
-              <span className="me-2 border bg-warning">Hello Bassem</span>
+              <span className="me-2 border bg-warning p-2 rounded-1">Hello Bassem</span>
               <HiOutlineLogout
                 onClick={onLogout}
                 style={{ fontSize: "xx-large", cursor: "pointer" }}
@@ -94,7 +94,7 @@ function Header() {
             </div>
           ) : (
             <div>
-              <span className="me-2 border bg-warning p-1">Hello Guest</span>
+              <span className="me-2 border bg-warning p-2 rounded-1">Hello Guest</span>
               <HiOutlineLogin
                 style={{ fontSize: "xx-large", cursor: "pointer" }}
                 onClick={() => navigate("/login")}
