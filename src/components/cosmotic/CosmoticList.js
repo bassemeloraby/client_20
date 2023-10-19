@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import GoogleLink from "../GoogleLink";
 
-const CosmoticList = ({ items, setUpdateProduct, user }) => {
+const CosmoticList = ({ items, user }) => {
   const navigate = useNavigate();
   // const { user } = useSelector((state) => state.auth);
-  const editHandler = (prod) => {
-    setUpdateProduct(prod);
-    navigate(`/cosmotics/cosmoticUpdate`);
-    console.log(prod);
+  const editHandler = (id) => {
+    // setUpdateProduct(prod);
+    navigate(`/cosmotics/cosmoticUpdate/${id}`);
+    console.log(id);
   };
   return (
     <div>
@@ -48,7 +48,7 @@ const CosmoticList = ({ items, setUpdateProduct, user }) => {
 
               {user && (
                 <div>
-                  <Button variant="success" onClick={() => editHandler(prod)}>
+                  <Button variant="success" onClick={() => editHandler(prod._id)}>
                     Edit
                   </Button>{" "}
                 </div>

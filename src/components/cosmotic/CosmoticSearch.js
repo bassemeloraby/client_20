@@ -8,7 +8,7 @@ const CosmoticSearch = ({setQuery}) => {
     <InputGroup.Text id="basic-addon1">Search</InputGroup.Text>
     <Form.Control
       type="text"
-      placeholder="Search by Trade Name or Scientific Name"
+      placeholder="Search by name or company"
       autoComplete="off"
       autoFocus
       onChange={(e) => setQuery(e.target.value)}

@@ -62,12 +62,13 @@ const Cosmotics = () => {
       </div>
       <Routes>
         <Route
-          path="cosmoticUpdate"
+          path="cosmoticUpdate/:id"
           element={
             <CosmoticUpdate
               updateProduct={updateProduct}
               setUpdatedPoduct={setUpdatedPoduct}
               user={user}
+              cosmotics={cosmotics}
             />
           }
         />

@@ -19,32 +19,35 @@ const CosmoticFilter = ({ cosmotics,user,setUpdateProduct }) => {
     if (filterKind === "no") {
       setOpenCategory(false);
       setOpenUsedArea(false);
+      setItems(cosmotics)
     }
     if (filterKind === "Category") {
       setOpenCategory(true);
       setOpenUsedArea(false);
-      const filterdata = cosmotics.filter((c) => c.Category === categoryFilter);
+      const filterdata = cosmotics.filter((c) => c.Category.includes(categoryFilter));
 
       setItems(filterdata);
     }
     if (filterKind === "usedArea") {
       setOpenCategory(false);
       setOpenUsedArea(true);
-      const filterdata = cosmotics.filter((c) => c.usedArea === usedAreaFilter);
+      const filterdata = cosmotics.filter((c) => c.usedArea.includes(usedAreaFilter) );
 
       setItems(filterdata);
     }
     if (filterKind === "all") {
       setOpenCategory(true);
       setOpenUsedArea(true);
-      const filterdata = cosmotics.filter(
-        (c) => c.usedArea === usedAreaFilter && c.Category === categoryFilter
+      const filterdata =cosmotics.filter(
+        (c) => c.usedArea.includes(usedAreaFilter) && c.Category.includes(categoryFilter)
       );
 
       setItems(filterdata);
     }
+    
+    
   }, [categoryFilter, cosmotics, usedAreaFilter, filterKind]);
-
+console.log(items,"items")
   const editHandler = (prod) => {
     setUpdateProduct(prod);
     navigate(`/cosmotics/cosmoticUpdate`);

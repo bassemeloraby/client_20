@@ -27,7 +27,7 @@ const IdleTimerContainer = () => {
   const idletimer = useIdleTimer({
     crossTab: true,
     ref: idleTimerRef,
-    timeout: 100 * 10000,
+    timeout: 10 * 60 * 1000,
     onIdle: onIdle,
   });
 
@@ -46,7 +46,7 @@ const IdleTimerContainer = () => {
     setModalIsOpen(false);
     clearTimeout(sessionTimeOutRef.current);
     window.location.reload();
-
+    navigate("/");
     console.log("user still active");
   };
 
@@ -67,7 +67,7 @@ const IdleTimerContainer = () => {
         setTimer((prev) => prev - 1);
         console.log("This will be called every 1 second");
       }, 1000);
-      setTimer(10)
+      setTimer(10);
       return () => clearInterval(interval);
     }
   }, [modalIsOpen]);
