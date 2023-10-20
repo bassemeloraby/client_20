@@ -14,7 +14,7 @@ const CosmoticCard = ({ updatedPoduct }) => {
   const search = () => {
     setLoading(true);
     navigate(`/cosmotics/cosmoticSearch`);
-    window.location.reload();
+    // window.location.reload();
     setLoading(false);
   };
   const filter = () => {

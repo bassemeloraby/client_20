@@ -69,7 +69,7 @@ const Login = () => {
         </h1>
         <p>Login and start settings</p>
       </section>
-      <section className="form">
+      <section className="form col-4">
         <form onSubmit={onSubmit}>
           <div className="form-group">
             <input

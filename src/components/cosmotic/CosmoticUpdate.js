@@ -54,6 +54,13 @@ const CosmoticUpdate = ({
       setLoading(false);
       setUpdatedPoduct(res.data);
       console.log(res.data);
+      const uu = cosmotics.find((comp) => comp._id === id)
+      if (uu) {
+        uu.Company = Company;
+        uu.Category = Category;
+        uu.usedArea1 = usedArea1;
+        uu.usedArea2 = usedArea2;
+      }
       navigate(`/cosmotics/cosmoticCard`);
     } catch (error) {
       setLoading(false);
@@ -140,52 +147,53 @@ const CosmoticUpdate = ({
                 </datalist>
               </Form.Group>{" "}
               {/*-------------updateProduct usedArea-----------------*/}{" "}
-              <Form.Group className="mb-3">
-                <Form.Label>Used Area</Form.Label>
-                <Form.Control
-                  type="text"
-                  id="usedArea"
-                  name="usedArea"
-                  defaultValue={usedArea1 +","+ usedArea2}
-                  placeholder="Enter usedArea"
-                  // onChange={onChange}
-                  disabled
-                />
-              </Form.Group>{" "}
-              {/*-------------usedArea select-----------------*/}{" "}
-              <div className="usedAreaSelect d-flex p-1">
-                {" "}
-                {/*-------------usedArea1 select-----------------*/}{" "}
-                <Form.Select
-                  aria-label="Default select example"
-                  onChange={onChange}
-                  name="usedArea1"
-                >
-                  <option>usedArea1</option>
-                  {usedAreaDb
-                    .sort((a, b) => (a.name < b.name ? -1 : 1))
-                    .map((c, i) => (
-                      <option key={i} value={c.name}>
-                        {c.name}
-                      </option>
-                    ))}
-                </Form.Select>
-                {/*-------------usedArea2 select-----------------*/}{" "}
-                <Form.Select
-                  aria-label="Default select example"
-                  onChange={onChange}
-                  name="usedArea2"
-
-                >
-                  <option>usedArea12</option>
-                  {usedAreaDb
-                    .sort((a, b) => (a.name < b.name ? -1 : 1))
-                    .map((c, i) => (
-                      <option key={i} value={c.name}>
-                        {c.name}
-                      </option>
-                    ))}
-                </Form.Select>
+              <div className="bg-success p-2 mb-2 rounded-2">
+                <Form.Group className="mb-3 col-2">
+                  <Form.Label>Used Area</Form.Label>
+                  <Form.Control
+                    type="text"
+                    id="usedArea"
+                    name="usedArea"
+                    defaultValue={usedArea1 + "," + usedArea2}
+                    placeholder="Enter usedArea"
+                    // onChange={onChange}
+                    disabled
+                  />
+                </Form.Group>{" "}
+                {/*-------------usedArea select-----------------*/}{" "}
+                <div className="usedAreaSelect d-flex p-1">
+                  {" "}
+                  {/*-------------usedArea1 select-----------------*/}{" "}
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={onChange}
+                    name="usedArea1"
+                  >
+                    <option>usedArea1</option>
+                    {usedAreaDb
+                      .sort((a, b) => (a.name < b.name ? -1 : 1))
+                      .map((c, i) => (
+                        <option key={i} value={c.name}>
+                          {c.name}
+                        </option>
+                      ))}
+                  </Form.Select>
+                  {/*-------------usedArea2 select-----------------*/}{" "}
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={onChange}
+                    name="usedArea2"
+                  >
+                    <option>usedArea12</option>
+                    {usedAreaDb
+                      .sort((a, b) => (a.name < b.name ? -1 : 1))
+                      .map((c, i) => (
+                        <option key={i} value={c.name}>
+                          {c.name}
+                        </option>
+                      ))}
+                  </Form.Select>
+                </div>
               </div>
               <Button variant="primary" type="submit">
                 Submit

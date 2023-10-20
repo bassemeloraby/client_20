@@ -16,9 +16,9 @@ import NotFind from "./pages/NotFind";
 
 function App() {
   const { user } = useSelector((state) => state.auth);
-//   window.onbeforeunload = function() {
-//     localStorage.removeItem("user");
-//  }
+  window.onbeforeunload = function() {
+    localStorage.removeItem("user");
+ }
  
   return (
     <Fragment>
