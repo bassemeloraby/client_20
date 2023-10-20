@@ -47,7 +47,7 @@ const CosmoticCard = ({ updatedPoduct }) => {
         <ListGroup className="list-group-flush">
           <ListGroup.Item>Company: {updatedPoduct.Company}</ListGroup.Item>
           <ListGroup.Item>Category: {updatedPoduct.Category}</ListGroup.Item>
-          <ListGroup.Item>Used Area: {updatedPoduct.usedArea}</ListGroup.Item>
+          <ListGroup.Item>Used Area: {updatedPoduct.usedArea1},{updatedPoduct.usedArea2}</ListGroup.Item>
           <ListGroup.Item>
             <Link
               to={l1 + updatedPoduct.Description + l2}

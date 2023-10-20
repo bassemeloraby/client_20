@@ -36,7 +36,7 @@ const CosmoticList = ({ items, user, setUpdateProduct }) => {
               <h3>{prod.Description}</h3>
               <h6>{prod.Company} </h6>
               <h6>
-                {prod.Category} for {prod.usedArea}
+                {prod.Category} for {prod.usedArea1},{prod.usedArea2}
               </h6>
             </div>
             <div className="d-flex">

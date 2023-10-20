@@ -33,7 +33,7 @@ const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
       setOpenCategory(false);
       setOpenUsedArea(true);
       const filterdata = cosmotics.filter((c) =>
-        c.usedArea.includes(usedAreaFilter)
+        c.usedArea1?.includes(usedAreaFilter) || c.usedArea2?.includes(usedAreaFilter)
       );
 
       setItems(filterdata);

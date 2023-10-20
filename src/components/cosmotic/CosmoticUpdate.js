@@ -22,12 +22,11 @@ const CosmoticUpdate = ({
   const [formData, setFormData] = useState({
     Company: updateProduct.Company,
     Category: updateProduct.Category,
-    usedArea: updateProduct.usedArea,
-    use1: "",
-    use2: "",
+    usedArea1: updateProduct.usedArea1,
+    usedArea2: updateProduct.usedArea2,
   });
 
-  const { Company, Category, usedArea, use1, use2 } = formData;
+  const { Company, Category, usedArea1, usedArea2 } = formData;
   // -----------functions-------------//
   const cancelHandler = () => {
     navigate(`/cosmotics/cosmoticSearch`);
@@ -48,7 +47,8 @@ const CosmoticUpdate = ({
       const res = await axios.patch(`${url}/${id}`, {
         Company: Company,
         Category: Category,
-        usedArea: use1 + " " + use2,
+        usedArea1: usedArea1,
+        usedArea2: usedArea2,
       });
 
       setLoading(false);
@@ -146,22 +146,22 @@ const CosmoticUpdate = ({
                   type="text"
                   id="usedArea"
                   name="usedArea"
-                  defaultValue={usedArea}
+                  defaultValue={usedArea1 +","+ usedArea2}
                   placeholder="Enter usedArea"
-                  onChange={onChange}
+                  // onChange={onChange}
                   disabled
                 />
               </Form.Group>{" "}
               {/*-------------usedArea select-----------------*/}{" "}
               <div className="usedAreaSelect d-flex p-1">
                 {" "}
-                {/*-------------used1 select-----------------*/}{" "}
+                {/*-------------usedArea1 select-----------------*/}{" "}
                 <Form.Select
                   aria-label="Default select example"
                   onChange={onChange}
-                  name="use1"
+                  name="usedArea1"
                 >
-                  <option>use1</option>
+                  <option>usedArea1</option>
                   {usedAreaDb
                     .sort((a, b) => (a.name < b.name ? -1 : 1))
                     .map((c, i) => (
@@ -170,13 +170,14 @@ const CosmoticUpdate = ({
                       </option>
                     ))}
                 </Form.Select>
-                {/*-------------used2 select-----------------*/}{" "}
+                {/*-------------usedArea2 select-----------------*/}{" "}
                 <Form.Select
                   aria-label="Default select example"
                   onChange={onChange}
-                  name="use2"
+                  name="usedArea2"
+
                 >
-                  <option>use2</option>
+                  <option>usedArea12</option>
                   {usedAreaDb
                     .sort((a, b) => (a.name < b.name ? -1 : 1))
                     .map((c, i) => (
@@ -186,7 +187,6 @@ const CosmoticUpdate = ({
                     ))}
                 </Form.Select>
               </div>
-              
               <Button variant="primary" type="submit">
                 Submit
               </Button>
