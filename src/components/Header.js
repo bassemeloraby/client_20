@@ -34,6 +34,7 @@ function Header() {
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
             onClick={toggleShow}
+            className="bg-dark"
           />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-lg`}
@@ -44,7 +45,7 @@ function Header() {
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
-                Medderma
+              Mederma
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
@@ -80,7 +81,7 @@ function Header() {
               className="text-light"
               style={{ textDecoration: "none" }}
             >
-              <h1>Medderma</h1>
+              <h1>Mederma</h1>
             </Link>
           </Navbar.Brand>
           {/* login icon */}

@@ -32,7 +32,7 @@ function AllDrugsList({ items, setScientific }) {
               borderRadius: "5px",
               margin: "5px 0",
             }}
-            className="d-flex justify-content-between"
+            className=""
           >
             <div>
               <h3>
@@ -42,14 +42,16 @@ function AllDrugsList({ items, setScientific }) {
               <h6>{drug.PublicPrice} SR </h6>
             </div>
           {/* -----------------options ----------------*/}
-            <div className="row ">
+            <div className="d-flex bg-light rounded-2">
               <span
+              className="ms-2"
                 style={{ cursor: "pointer", color: "blue" }}
                 onClick={() => handelS(drug.ScientificName)}
               >
                 Alternative
               </span>
               <span
+              className="me-2 ms-2"
                 style={{ cursor: "pointer", color: "green" }}
                 onClick={() => handleIndication(drug.ScientificName)}
               >
