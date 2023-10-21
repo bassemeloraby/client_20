@@ -8,49 +8,51 @@ import GoogleLink from "../GoogleLink";
 // ----------------- cosmotic Filter component--------------//
 const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
   const [filterKind, setFilterKind] = useState(false);
-  const [openCategory, setOpenCategory] = useState(false);
+  const [openUse, setOpenUse] = useState(false);
   const [openUsedArea, setOpenUsedArea] = useState(false);
   const [items, setItems] = useState(cosmotics);
-  const [categoryFilter, setCategoryFilter] = useState();
+  const [useFilter, setUseFilter] = useState();
   const [usedAreaFilter, setUsedAreaFilter] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (filterKind === "no") {
-      setOpenCategory(false);
+      setOpenUse(false);
       setOpenUsedArea(false);
       setItems(cosmotics);
     }
-    if (filterKind === "Category") {
-      setOpenCategory(true);
+    if (filterKind === "use") {
+      setOpenUse(true);
       setOpenUsedArea(false);
-      const filterdata = cosmotics.filter((c) =>
-        c.Category.includes(categoryFilter)
+      const filterdata = cosmotics.filter(
+        (c) => c.use1?.includes(useFilter) || c.use2?.includes(useFilter)
       );
 
       setItems(filterdata);
     }
     if (filterKind === "usedArea") {
-      setOpenCategory(false);
+      setOpenUse(false);
       setOpenUsedArea(true);
-      const filterdata = cosmotics.filter((c) =>
-        c.usedArea1?.includes(usedAreaFilter) || c.usedArea2?.includes(usedAreaFilter)
+      const filterdata = cosmotics.filter(
+        (c) =>
+          c.usedArea1?.includes(usedAreaFilter) ||
+          c.usedArea2?.includes(usedAreaFilter)
       );
 
       setItems(filterdata);
     }
     if (filterKind === "all") {
-      setOpenCategory(true);
+      setOpenUse(true);
       setOpenUsedArea(true);
       const filterdata = cosmotics.filter(
         (c) =>
-          c.usedArea.includes(usedAreaFilter) &&
-          c.Category.includes(categoryFilter)
+          c.usedArea?.includes(usedAreaFilter) &&
+          c.Category?.includes(useFilter)
       );
 
       setItems(filterdata);
     }
-  }, [categoryFilter, cosmotics, usedAreaFilter, filterKind]);
+  }, [useFilter, cosmotics, usedAreaFilter, filterKind]);
   console.log(items, "items");
 
   const editHandler = (prod) => {
@@ -72,7 +74,7 @@ const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
           className="me-2"
         >
           <option value="no">no</option>
-          <option value="Category">Category</option>
+          <option value="use">Use</option>
           <option value="usedArea">Used Area</option>
           <option value="all">and</option>
         </Form.Select>
@@ -82,15 +84,15 @@ const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
         className="filters d-flex p-2"
         style={{ backgroundColor: "brown" }}
       >
-        {/*-----------Category filter------------*/}
+        {/*-----------use filter------------*/}
         <div className="me-2">
-          {openCategory && (
+          {openUse && (
             <Form.Select
               aria-label="Default select example"
-              onChange={(e) => setCategoryFilter(e.target.value)}
+              onChange={(e) => setUseFilter(e.target.value)}
               className=""
             >
-              <option value="">--use1--</option>
+              <option value="">--use--</option>
               {useDb.map((c, i) => (
                 <option key={i} value={c.name}>
                   {c.name}
@@ -129,7 +131,8 @@ const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
             <tr key={prod._id}>
               <td className="text-center">{i + 1}</td>
               <td className="d-flex justify-content-between">
-                <span>{prod.Description}</span> <GoogleLink name={prod.Description} />
+                <span>{prod.Description}</span>{" "}
+                <GoogleLink name={prod.Description} />
               </td>
               <td>
                 {user && (
