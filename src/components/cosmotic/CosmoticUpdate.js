@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { CategoryDb, CompanyDb, usedAreaDb } from "../../data/CosmoticData";
+import { useDb, CompanyDb, usedAreaDb } from "../../data/CosmoticData";
 import axios from "axios";
 import Spinner from "../Spinner";
 import Button from "react-bootstrap/Button";
@@ -54,7 +54,7 @@ const CosmoticUpdate = ({
       setLoading(false);
       setUpdatedPoduct(res.data);
       console.log(res.data);
-      const uu = cosmotics.find((comp) => comp._id === id)
+      const uu = cosmotics.find((comp) => comp._id === id);
       if (uu) {
         uu.Company = Company;
         uu.Category = Category;
@@ -137,13 +137,13 @@ const CosmoticUpdate = ({
                   list="Category1"
                 />
                 <datalist id="Category1">
-                  {CategoryDb.sort((a, b) => (a.name < b.name ? -1 : 1)).map(
-                    (c, i) => (
+                  {useDb
+                    .sort((a, b) => (a.name < b.name ? -1 : 1))
+                    .map((c, i) => (
                       <option key={i} value={c.name}>
                         {c.name}
                       </option>
-                    )
-                  )}
+                    ))}
                 </datalist>
               </Form.Group>{" "}
               {/*-------------updateProduct usedArea-----------------*/}{" "}

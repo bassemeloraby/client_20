@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { CategoryDb, usedAreaDb } from "../../data/CosmoticData";
+import { useDb, usedAreaDb } from "../../data/CosmoticData";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import GoogleLink from "../GoogleLink";
+// ----------------- cosmotic Filter component--------------//
 const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
   const [filterKind, setFilterKind] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
@@ -89,8 +90,8 @@ const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
               onChange={(e) => setCategoryFilter(e.target.value)}
               className=""
             >
-              <option value="">--Category--</option>
-              {CategoryDb.map((c, i) => (
+              <option value="">--use1--</option>
+              {useDb.map((c, i) => (
                 <option key={i} value={c.name}>
                   {c.name}
                 </option>

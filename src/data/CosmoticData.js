@@ -1,4 +1,4 @@
-export const CategoryDb = [
+export const useDb = [
   {
     id: 1,
     name: "Anti Aging",
@@ -81,3 +81,4 @@ export const usedAreaDb = [
     name: "Vaginal",
   },
 ];
+
