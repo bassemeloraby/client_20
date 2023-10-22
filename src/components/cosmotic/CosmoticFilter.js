@@ -46,12 +46,13 @@ const CosmoticFilter = ({ cosmotics, user, setUpdateProduct }) => {
       setOpenUsedArea(true);
       const filterdata = cosmotics.filter(
         (c) =>
-          c.usedArea1?.includes(usedAreaFilter) &&
-          c.use1?.includes(useFilter)
+          (c.usedArea1?.includes(usedAreaFilter) ||
+            c.usedArea2?.includes(usedAreaFilter)) &&
+          (c.use1?.includes(useFilter) || c.use2?.includes(useFilter))
       );
-console.log(usedAreaFilter)
-console.log(useFilter)
-console.log(filterdata)
+      console.log(usedAreaFilter);
+      console.log(useFilter);
+      console.log(filterdata);
       setItems(filterdata);
     }
   }, [useFilter, cosmotics, usedAreaFilter, filterKind]);
