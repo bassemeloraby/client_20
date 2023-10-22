@@ -1,5 +1,4 @@
 import { useState, Fragment } from "react";
-
 import { Container } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
@@ -45,12 +44,17 @@ function Header() {
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
-              Mederma
+                Mederma
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link as={Link} to="/" onClick={handleClose}>
+                <Nav.Link
+                  as={Link}
+                  to="/"
+                  onClick={handleClose}
+                  className="p-2 border-bottom  border-success"
+                >
                   Home
                 </Nav.Link>
                 {mainPages.map((mainPage) => (
@@ -58,6 +62,7 @@ function Header() {
                     title={mainPage.text}
                     id="basic-nav-dropdown"
                     key={mainPage.id}
+                    className="p-2 border-bottom  border-success"
                   >
                     {mainPage.ping.map((m, index) => (
                       <NavDropdown.Item
@@ -66,7 +71,7 @@ function Header() {
                         onClick={handleClose}
                         key={index}
                       >
-                        {m.name}
+                        {m.name} {m.icon}
                       </NavDropdown.Item>
                     ))}
                   </NavDropdown>
@@ -87,7 +92,9 @@ function Header() {
           {/* login icon */}
           {user ? (
             <div>
-              <span className="me-2 border bg-warning p-2 rounded-1">Hello Bassem</span>
+              <span className="me-2 border bg-warning p-2 rounded-1">
+                Hello Bassem
+              </span>
               <HiOutlineLogout
                 onClick={onLogout}
                 style={{ fontSize: "xx-large", cursor: "pointer" }}
@@ -95,7 +102,9 @@ function Header() {
             </div>
           ) : (
             <div>
-              <span className="me-2 border bg-warning p-2 rounded-1">Hello Guest</span>
+              <span className="me-2 border bg-warning p-2 rounded-1">
+                Hello Guest
+              </span>
               <HiOutlineLogin
                 style={{ fontSize: "xx-large", cursor: "pointer" }}
                 onClick={() => navigate("/login")}

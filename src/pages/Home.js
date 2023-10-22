@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-
+import start1 from "../images/start1.png";
 function Home() {
   return (
     <Fragment>
@@ -14,6 +14,10 @@ function Home() {
             our website and helping us to know about the needs of every
             pharmacist in his job
           </p>
+          <div className="mb-2 row">
+         <span>clik here to move in website</span> 
+            <img src={start1} alt="insurance2" className="border"></img>
+          </div>
         </section>
       </section>
     </Fragment>
